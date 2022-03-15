@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <style>
+  body {
+    color:white;
+    background-color: #222;
+  }
+  /* 给光点加上像光点的样式 */
+  .spot {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    box-shadow: 0px 0px 40px 10px #fff;
+    background-color: #f00;
+    opacity: .7;
+	visibility:hidden;
+  }
+  </style>
+</head>
+<body>
+<div class="spot"></div>
+  <script>
+    var spot = document.getElementsByClassName("spot").item(0);
+	document.addEventListener('touchstart',OnTouchStart, false);
+	document.addEventListener('touchmove', OnTouchMove,false)
+	//document.addEventListener('touchend',OnTouchEnd,false)
+    function OnTouchStart(e){
+	  //e.preventDefault();
+	  spot.style.visibility = "visible";
+	  
+	  spot.style.top = e.changedTouches[0].clientY - 35+"px";
+	  spot.style.left = e.changedTouches[0].clientX - 35 +"px";
+	  //换成touches[0],试试当有两个触点时情况如何？
+   }
+   function OnTouchMove(e){
+	  //e.preventDefault();
+	  spot.style.top = e.changedTouches[0].clientY - 35 +"px"
+	  spot.style.left = e.changedTouches[0].clientX - 35 +"px"
+   }
+   function OnTouchEnd(e){
+	  //e.preventDefault(); 
+	  spot.style.visibility = "hidden";
+	  spot.style.top = e.changedTouches[0].clientY - 35 +"px"
+	  spot.style.left = e.changedTouches[0].clientX - 35 +"px"
+   }
+</script>
+</body>
+</html>
