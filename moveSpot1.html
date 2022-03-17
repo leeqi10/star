@@ -18,32 +18,45 @@
     box-shadow: 0px 0px 40px 10px #fff;
     background-color: #f00;
     opacity: .7;
-	visibility:hidden;
+  text-align: center;
+  color: #fff;
+  line-height: 70px;
   }
+
   </style>
 </head>
 <body>
-
-  <script>
-   
+</body>
+<script>
+  var i=0;
+    var sum=0;
 	document.addEventListener('touchstart',OnTouchStart, false);
 	document.addEventListener('touchmove', OnTouchMove,false);
   document.addEventListener('touchend', OnTouchEnd,false)
-
+  var bgColors = ['#F00', '#0F0', '#00F'];
+  var bg=['赵', '雪', '真','好','看','❤'];
+ 
     function OnTouchStart(e){
+      sum++;
+      var p=Math.round(Math.random()*10);
+if(p>5){
+  p=5;
+}
 	  //e.preventDefault();
-	
     var touchPtList = e.touches;
-	
 		  spot = document.createElement('div');
-		  spot.className="spot";
-      spot.style.visibility = "visible";
-		
+      spot.className="spot";
+      spot.style.backgroundColor=bgColors[i];
+     var txt=document.createTextNode(bg[p]);
 		  document.body.appendChild(spot);
-		
+      spot.appendChild(txt);
+    
+      i++;
+      if(i>2){
+i=0;
+  }
 	  spot.style.top = e.changedTouches[0].clientY - 35+"px";
 	  spot.style.left = e.changedTouches[0].clientX - 35 +"px";
-	  //换成touches[0],试试当有两个触点时情况如何？
    }
    function OnTouchMove(e){
 	  //e.preventDefault();
@@ -52,11 +65,8 @@
    }
    function OnTouchEnd(e){
 	  //e.preventDefault(); 
-	 spot.style.visibility = "visible"; 
 	  spot.style.top = e.changedTouches[0].clientY - 35 +"px"
 	  spot.style.left = e.changedTouches[0].clientX - 35 +"px"
    }
 </script>
-</body>
 </html>
-
